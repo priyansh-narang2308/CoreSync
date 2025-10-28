@@ -1,6 +1,7 @@
 import { useSignUp } from "@clerk/clerk-expo";
 import { Link, useRouter } from "expo-router";
 import {
+  Alert,
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
@@ -22,9 +23,15 @@ export default function SignUp() {
   const [pendingVerification, setPendingVerification] = React.useState(false);
   const [code, setCode] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
+  const [showPassword, setShowPassword] = React.useState(false);
 
   const onSignUpPress = async () => {
     if (!isLoaded) return;
+
+    if (!emailAddress || !password) {
+      Alert.alert("Error", "Please fill in all the fields");
+      return;
+    }
 
     setIsLoading(true);
     try {
@@ -57,24 +64,43 @@ export default function SignUp() {
 
   if (pendingVerification) {
     return (
-      <SafeAreaView className="flex-1 bg-[#F9FAFB] justify-center items-center px-6">
-        <View className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 w-full">
-          <Text className="text-2xl font-bold text-gray-900 mb-6 text-center">
-            Verify your email
-          </Text>
+      <SafeAreaView className="flex-1 bg-[#F9FAFB] justify-center items-center">
+        <View className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 w-[90%] max-w-lg">
+          <View className="items-center mb-6">
+            <View className="w-16 h-16 rounded-2xl bg-indigo-100 items-center justify-center mb-4">
+              <Ionicons name="mail-outline" size={32} color="#4F46E5" />
+            </View>
+
+            <Text className="text-2xl font-bold text-gray-900">
+              Check your email
+            </Text>
+            <Text className="text-sm text-gray-500 mt-2 text-center leading-relaxed">
+              We’ve sent a 6-digit code to your email. Enter it below to
+              complete your sign-up.
+            </Text>
+          </View>
+
           <TextInput
             placeholder="Enter verification code"
             value={code}
             onChangeText={setCode}
-            className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-4 text-center text-gray-900 text-lg mb-6"
+            className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-4 text-center text-gray-900 text-lg tracking-widest mb-6"
             keyboardType="numeric"
+            maxLength={6}
           />
+
           <TouchableOpacity
             onPress={onVerifyPress}
+            activeOpacity={0.85}
             className="bg-indigo-600 py-4 rounded-xl items-center shadow-md"
           >
-            <Text className="text-white font-semibold text-lg">Verify</Text>
+            <Text className="text-white font-semibold text-lg">Continue</Text>
           </TouchableOpacity>
+
+          <Text className="text-center text-gray-500 text-sm mt-4">
+            Didn’t receive the code?{" "}
+            <Text className="text-indigo-600 font-semibold">Resend</Text>
+          </Text>
         </View>
       </SafeAreaView>
     );
@@ -121,7 +147,6 @@ export default function SignUp() {
                 />
               </View>
             </View>
-
             <View className="mb-6">
               <Text className="text-sm font-medium text-gray-700 mb-2">
                 Password
@@ -136,11 +161,21 @@ export default function SignUp() {
                   value={password}
                   placeholder="Create a password"
                   placeholderTextColor="#9CA3AF"
-                  secureTextEntry
+                  secureTextEntry={!showPassword}
                   onChangeText={setPassword}
                   className="flex-1 ml-3 text-gray-900"
                   editable={!isLoading}
                 />
+                <TouchableOpacity
+                  onPress={() => setShowPassword(!showPassword)}
+                  activeOpacity={0.7}
+                >
+                  <Ionicons
+                    name={showPassword ? "eye-off-outline" : "eye-outline"}
+                    size={22}
+                    color="#6B7280"
+                  />
+                </TouchableOpacity>
               </View>
               <Text className="text-gray-500 ml-1 mt-1 text-sm">
                 Password must be at least 8 characters long
@@ -169,19 +204,9 @@ export default function SignUp() {
             <Text className="text-xs text-gray-500 mt-2">
               Signing up means you agree to our Terms and Privacy Policy.
             </Text>
-
-            <View className="flex-row items-center my-4">
-              <View className="flex-1 h-px bg-gray-200" />
-              <Text className="px-4 text-gray-400 text-sm">
-                or continue with
-              </Text>
-              <View className="flex-1 h-px bg-gray-200" />
-            </View>
-
-            <GoogleButton />
           </View>
 
-          <View className="pb-12 pt-6 items-center">
+          <View className="pb-12 pt-8 items-center">
             <View className="flex-row items-center mb-4">
               <Text className="text-gray-600 text-lg">
                 Already have an account?{" "}
@@ -195,7 +220,7 @@ export default function SignUp() {
               </Link>
             </View>
 
-            <Text className="text-center text-gray-800 text-lg font-semibold tracking-wide leading-snug">
+            <Text className="text-center text-gray-800 text-lg font-semibold tracking-wide leading-snug pt-4">
               Time to move, track, and transform
             </Text>
           </View>

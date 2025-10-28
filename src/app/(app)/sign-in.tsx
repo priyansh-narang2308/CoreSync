@@ -1,6 +1,7 @@
 import { useSignIn } from "@clerk/clerk-expo";
 import { Link, useRouter } from "expo-router";
 import {
+  Alert,
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
@@ -20,9 +21,15 @@ export default function Page() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [emailAddress, setEmailAddress] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [showPassword, setShowPassword] = React.useState(false);
 
   const onSignInPress = async () => {
     if (!isLoaded) return;
+
+    if(!emailAddress||!password){
+      Alert.alert("Error","Please fill in all the fields")
+      return
+    }
 
     setIsLoading(true);
     try {
@@ -101,11 +108,21 @@ export default function Page() {
                   value={password}
                   placeholder="Enter your password"
                   placeholderTextColor="#9CA3AF"
-                  secureTextEntry
+                  secureTextEntry={!showPassword}
                   onChangeText={setPassword}
                   className="flex-1 ml-3 text-gray-900"
                   editable={!isLoading}
                 />
+                <TouchableOpacity
+                  onPress={() => setShowPassword(!showPassword)}
+                  activeOpacity={0.7}
+                >
+                  <Ionicons
+                    name={showPassword ? "eye-off-outline" : "eye-outline"}
+                    size={22}
+                    color="#6B7280"
+                  />
+                </TouchableOpacity>
               </View>
             </View>
 
