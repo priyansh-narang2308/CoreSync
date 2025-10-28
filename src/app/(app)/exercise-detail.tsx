@@ -281,11 +281,14 @@ const ExerciseDetailPage = () => {
                     </ActivityIndicator>
                   </View>
                 ) : (
-                  <Text className="text-white font-bold text-lg">
-                    {aiGuidance
-                      ? "Refresh AI Guidance"
-                      : "Get AI Guidance on Form and Technique"}
-                  </Text>
+                  <View className="flex-row items-center justify-center space-x-4 gap-2">
+                    <Ionicons name="sparkles" size={22} color="gold" />
+                    <Text className="text-white font-bold text-lg">
+                      {aiGuidance
+                        ? "Refresh AI Coach Insights"
+                        : "Ask the AI Coach for Help"}
+                    </Text>
+                  </View>
                 )}
               </TouchableOpacity>
 
