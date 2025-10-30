@@ -8,7 +8,7 @@ const Layout = () => {
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen
         name="workout-record"
-        options={{ title: "Workout Record" }}
+        options={{ title: "Workout Record", headerBackTitle: "History" }}
       />
     </Stack>
   );
