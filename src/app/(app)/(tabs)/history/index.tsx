@@ -107,7 +107,6 @@ export default function Page() {
     );
   };
 
-  // Find the exercise name
   const getExerciseNames = (workout: GetWorkoutsQueryResult[number]) => {
     return (
       workout.exercises
