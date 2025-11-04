@@ -17,4 +17,18 @@ interface WorkoutExercise {
   sets: WorkoutSet[];
 }
 
- 
+interface WorkoutStore {
+  // state variables
+  workoutExercises: WorkoutExercise[];
+  weightUnit: "kg" | "lbs";
+
+  // Actionss 
+  addExerciseToWorkout: (exercise: { name: string; sanityId: string }) => void;
+  setWorkoutExercises: (
+    exercises:
+      | WorkoutExercise[]
+      | ((prev: WorkoutExercise[]) => WorkoutExercise[])
+  ) => void;
+  setWeightUnit: (unit: "kg" | "lbs") => void;
+  resetWorkout: () => void;
+}
