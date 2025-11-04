@@ -273,12 +273,11 @@ const ExerciseDetailPage = () => {
                 disabled={aiLoading}
               >
                 {aiLoading ? (
-                  <View className="flex-row items-center">
-                    <ActivityIndicator size={"small"} color="white">
-                      <Text className="text-white font-bold text-lg ml-2">
-                        Loading...
-                      </Text>
-                    </ActivityIndicator>
+                  <View className="flex-row items-center justify-center">
+                    <ActivityIndicator size="small" color="white" />
+                    <Text className="text-white font-bold text-lg ml-2">
+                      Loading...
+                    </Text>
                   </View>
                 ) : (
                   <View className="flex-row items-center justify-center space-x-4 gap-2">
