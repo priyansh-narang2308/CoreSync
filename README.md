@@ -7,3 +7,8 @@
 ## ZUSTAND FOR STATE MANAGEMENT 
 ## REACT TIMER HOOK FOR THE WORKOUT ACTIVENESS 
 
+<<<<<<< HEAD
+=======
+## USED TAILWIND TEMPLATE OF EXPO
+## https://github.com/expo/examples/tree/master/with-tailwindcss THIS 
+>>>>>>> 16967f9 (feat: Completed the UseWorkoutStore using zustand)
