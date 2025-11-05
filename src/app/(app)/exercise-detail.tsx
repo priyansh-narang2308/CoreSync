@@ -231,7 +231,7 @@ const ExerciseDetailPage = () => {
                     </Text>
                   </View>
                 ) : (
-                  <View className="bg-blue-50 rounded-xl p-4 border-l-4 border-blue-500">
+                  <View className="bg-indigo-50 rounded-xl p-4 border-l-4 border-indigo-500">
                     <Markdown
                       style={{
                         body: {
@@ -267,7 +267,7 @@ const ExerciseDetailPage = () => {
                     ? "bg-gray-400"
                     : aiGuidance
                     ? "bg-green-500"
-                    : "bg-blue-500"
+                    : "bg-indigo-500"
                 }`}
                 onPress={getAIGuidance}
                 disabled={aiLoading}

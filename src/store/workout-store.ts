@@ -45,7 +45,7 @@ export const useWorkoutStore = create<WorkoutStore>()(
             id: Math.random().toString(),
             sanityId: exercise.sanityId,
             name: exercise.name,
-            sets: [],  //initially empty
+            sets: [], //initially empty
           };
           return {
             workoutExercises: [...state.workoutExercises, newExercise],
@@ -74,6 +74,7 @@ export const useWorkoutStore = create<WorkoutStore>()(
       name: "workout-store",
       storage: createJSONStorage(() => AsyncStorage),
       partialize: (state) => ({
+        workoutExercises: state.workoutExercises,
         weightUnit: state.weightUnit,
       }),
     }

@@ -91,7 +91,7 @@ const ActiveWorkout = () => {
                 <TouchableOpacity
                   onPress={() => setWeightUnit("lbs")}
                   className={`px-4 py-2 rounded ${
-                    weightUnit === "lbs" ? "bg-blue-600" : "bg-transparent"
+                    weightUnit === "lbs" ? "bg-indigo-600" : "bg-transparent"
                   }`}
                 >
                   <Text
@@ -106,7 +106,7 @@ const ActiveWorkout = () => {
                 <TouchableOpacity
                   onPress={() => setWeightUnit("kg")}
                   className={`px-4 py-2 rounded ${
-                    weightUnit === "kg" ? "bg-blue-600" : "bg-transparent"
+                    weightUnit === "kg" ? "bg-indigo-600" : "bg-transparent"
                   }`}
                 >
                   <Text
@@ -158,12 +158,13 @@ const ActiveWorkout = () => {
             {workoutExercises.map((exer) => (
               <View key={exer.id} className="mb-8">
                 {/* TODO:   here is exer header */}
+                {/* 3:39:36 */}
               </View>
             ))}
             {/* add exercise  */}
             <TouchableOpacity
               onPress={addExercise}
-              className="bg-blue-600 rounded-2xl py-4 items-center mb-8 active:bg-blue-700"
+              className="bg-indigo-600 rounded-2xl py-4 items-center mb-8 active:bg-indigo-700"
               activeOpacity={0.8}
             >
               <View className="flex-row items-center">
