@@ -26,7 +26,7 @@ const Workout = () => {
       <View className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 mx-6 mb-8">
         <View className="flex-row items-center justify-between mb-6">
           <View className="flex-row items-center">
-            <View className="w-12 h-12 bg-blue-100 rounded-full items-center justify-center mr-3">
+            <View className="w-12 h-12 bg-indigo-100 rounded-full items-center justify-center mr-3">
               <Ionicons name="fitness" size={24} color="#3B82F6" />
             </View>
             <View>
@@ -43,7 +43,7 @@ const Workout = () => {
 
         <TouchableOpacity
           onPress={startWorkout}
-          className="bg-blue-600 rounded-2xl py-4 items-center active:bg-blue-700"
+          className="bg-indigo-600 rounded-2xl py-4 items-center active:bg-indigo-700"
           activeOpacity={0.8}
         >
           <View className="flex-row items-center">

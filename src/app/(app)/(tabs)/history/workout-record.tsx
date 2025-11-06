@@ -150,7 +150,7 @@ const WorkoutRecord = () => {
           </Text>
           <TouchableOpacity
             onPress={() => router.back()}
-            className="bg-blue-600 px-6 py-3 rounded-lg mt-6"
+            className="bg-indigo-600 px-6 py-3 rounded-lg mt-6"
           >
             <Text className="text-white font-medium">Go Back</Text>
           </TouchableOpacity>
@@ -289,8 +289,8 @@ const WorkoutRecord = () => {
                     {exerciseDataa.sets?.length || 0} sets completed
                   </Text>
                 </View>
-                <View className="bg-blue-100 rounded-full w-10 h-10 items-center justify-center">
-                  <Text className="text-blue-600 font-bold">{index + 1}</Text>
+                <View className="bg-indigo-100 rounded-full w-10 h-10 items-center justify-center">
+                  <Text className="text-indigo-600 font-bold">{index + 1}</Text>
                 </View>
               </View>
               <View className="space-y-2">

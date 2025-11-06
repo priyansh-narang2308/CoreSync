@@ -194,7 +194,7 @@ export default function Page() {
                         </Text>
                       </View>
                     </View>
-                    <View className="bg-blue-100 rounded-full w-12 h-12 items-center justify-center">
+                    <View className="bg-indigo-100 rounded-full w-12 h-12 items-center justify-center">
                       <Ionicons
                         name="fitness-outline"
                         size={24}
@@ -227,9 +227,9 @@ export default function Page() {
                           .map((name, index) => (
                             <View
                               key={index}
-                              className="bg-blue-100 border border-blue-200 rounded-xl px-4 py-1.5 mr-2 mb-2 shadow-sm"
+                              className="bg-indigo-100 border border-indigo-200 rounded-xl px-4 py-1.5 mr-2 mb-2 shadow-sm"
                             >
-                              <Text className="text-blue-800 text-sm font-semibold">
+                              <Text className="text-indigo-800 text-sm font-semibold">
                                 {name}
                               </Text>
                             </View>
