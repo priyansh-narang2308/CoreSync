@@ -11,3 +11,4 @@
 ## https://github.com/expo/examples/tree/master/with-tailwindcss THIS 
 
 ## USE FOCUS EFFECT
+## UPDATE SET function tricky
