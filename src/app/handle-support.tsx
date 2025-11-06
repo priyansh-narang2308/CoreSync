@@ -33,7 +33,7 @@ const HelpSupport = () => {
         <View className="px-6 pt-6 pb-4 bg-white border-b border-gray-100">
           <View className="flex-row items-center mb-2">
             <TouchableOpacity
-              onPress={() => router.back()}
+              onPress={() => router.push("/profile")}
               className="p-2 mr-4"
             >
               <Ionicons name="arrow-back" size={24} color="#374151" />

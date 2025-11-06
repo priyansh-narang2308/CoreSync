@@ -10,6 +10,30 @@ const Workout = () => {
     router.push("/active-workout");
   };
 
+  const fitnessTips = [
+    {
+      icon: "walk-outline",
+      title: "Start with a Warmup",
+      text: "5-10 minutes of light cardio prevents injury and primes your muscles.",
+      color: "#FCD34D",
+      bgColor: "bg-amber-100",
+    },
+    {
+      icon: "water-outline",
+      title: "Stay Hydrated",
+      text: "Drink water before, during, and after your workout to maintain energy.",
+      color: "#3B82F6",
+      bgColor: "bg-blue-100",
+    },
+    {
+      icon: "bed-outline",
+      title: "Prioritize Recovery",
+      text: "Aim for 7-9 hours of sleep; it's when your muscles actually repair and grow.",
+      color: "#10B981",
+      bgColor: "bg-emerald-100",
+    },
+  ];
+
   return (
     <SafeAreaView className="flex-1 bg-gray-50">
       <StatusBar barStyle="dark-content" />
@@ -22,7 +46,30 @@ const Workout = () => {
             Start your workout session
           </Text>
         </View>
+
+        <View className="mb-8">
+          <Text className="text-xl font-bold text-gray-800 mb-4">
+            Today's Fitness Tips
+          </Text>
+          {fitnessTips.map((tip, index) => (
+            <View
+              key={index}
+              className="flex-row items-center bg-white p-4 rounded-xl mb-3 shadow-sm border border-gray-100"
+            >
+              <View
+                className={`w-10 h-10 ${tip.bgColor} rounded-full items-center justify-center mr-3`}
+              >
+                <Ionicons name={tip.icon as any} size={20} color={tip.color} />
+              </View>
+              <View className="flex-1">
+                <Text className="font-semibold text-gray-900">{tip.title}</Text>
+                <Text className="text-sm text-gray-500">{tip.text}</Text>
+              </View>
+            </View>
+          ))}
+        </View>
       </View>
+
       <View className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 mx-6 mb-8">
         <View className="flex-row items-center justify-between mb-6">
           <View className="flex-row items-center">
