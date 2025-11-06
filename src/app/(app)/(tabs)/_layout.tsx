@@ -79,7 +79,9 @@ const Layout = () => {
           tabBarIcon: () =>
             user?.imageUrl ? (
               <Image
-                source={{ uri: user.imageUrl }}
+                source={{
+                  uri: user.imageUrl ?? user?.externalAccounts[0]?.imageUrl,
+                }}
                 style={{
                   width: 28,
                   height: 28,
