@@ -47,54 +47,6 @@ A modern, cross-platform fitness tracking application built with React Native an
 - **[Google Gemini AI](https://ai.google.dev/)** - AI-powered exercise guidance
 - **[Groq](https://groq.com/)** - AI inference platform
 
-### Utilities
-- **[React Timer Hook](https://github.com/amrlabib/react-timer-hook)** - Timer functionality for workouts
-- **[React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/)** - Animation library
-- **[Expo Secure Store](https://docs.expo.dev/versions/latest/sdk/securestore/)** - Secure key-value storage
-- **[AsyncStorage](https://react-native-async-storage.github.io/async-storage/)** - Local data persistence
-
-## 📁 Project Structure
-
-```
-coresync/
-├── app.json                 # Expo configuration
-├── src/
-│   ├── app/
-│   │   ├── (app)/          # Protected app routes
-│   │   │   ├── (tabs)/     # Tab navigation screens
-│   │   │   │   ├── index.tsx              # Home/Dashboard
-│   │   │   │   ├── workout.tsx            # Workout preparation
-│   │   │   │   ├── active-workout.tsx     # Active workout session
-│   │   │   │   ├── exercises.tsx          # Exercise library
-│   │   │   │   ├── history/               # Workout history
-│   │   │   │   └── profile/               # User profile
-│   │   │   ├── exercise-detail.tsx        # Exercise details with AI
-│   │   │   ├── sign-in.tsx                # Sign in screen
-│   │   │   └── sign-up.tsx                # Sign up screen
-│   │   ├── api/            # API routes (Expo Router API)
-│   │   │   ├── ai+api.ts                  # AI exercise guidance endpoint
-│   │   │   ├── save-workout+api.ts        # Save workout endpoint
-│   │   │   └── delete-workout+api.ts      # Delete workout endpoint
-│   │   └── components/     # Reusable components
-│   │       ├── exercise-card.tsx
-│   │       ├── exercise-selection-modal.tsx
-│   │       └── google-sign-in-button.tsx
-│   ├── lib/
-│   │   ├── sanity/         # Sanity CMS integration
-│   │   │   ├── client.ts   # Sanity client configuration
-│   │   │   └── types.ts    # TypeScript types
-│   │   └── utils.ts        # Utility functions
-│   └── store/
-│       └── workout-store.ts # Zustand workout state management
-├── sanity/                 # Sanity CMS configuration
-│   ├── schemaTypes/        # Sanity schema definitions
-│   │   ├── exercise.ts     # Exercise schema
-│   │   ├── workout.ts      # Workout schema
-│   │   └── index.ts
-│   ├── sanity.config.ts    # Sanity configuration
-│   └── sanity.cli.ts       # Sanity CLI configuration
-└── package.json
-```
 
 ## 🚦 Getting Started
 
@@ -226,11 +178,6 @@ Uses GROQ (Graph-Relational Object Queries) for fetching data from Sanity:
 - Efficient data fetching with references
 - Filtered and sorted results
 
-### Focus Effect
-
-Uses `useFocusEffect` to refresh data when screens come into focus:
-- Ensures data is up-to-date when navigating between screens
-- Handles workout state synchronization
 
 ## 📱 Available Scripts
 
@@ -256,14 +203,6 @@ API routes follow the Next.js convention:
 - Export HTTP method functions (GET, POST, PUT, DELETE)
 - Use `Request` and `Response` objects
 
-Example:
-```typescript
-export async function POST(request: Request) {
-  const data = await request.json();
-  // Process data
-  return Response.json({ success: true });
-}
-```
 
 ## 🔐 Security Notes
 
