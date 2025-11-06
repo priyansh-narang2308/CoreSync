@@ -7,6 +7,7 @@ import {
   Alert,
   KeyboardAvoidingView,
   ScrollView,
+  TextInput,
 } from "react-native";
 import React, { useState } from "react";
 import { useStopwatch } from "react-timer-hook";
@@ -65,6 +66,26 @@ const ActiveWorkout = () => {
         exericse.id === exericseId
           ? { ...exericse, sets: [...exericse.sets, newSet] }
           : exericse
+      )
+    );
+  };
+
+  const updateSet = (
+    exerciseId: string,
+    setId: string,
+    field: "reps" | "weight",
+    value: string
+  ) => {
+    setWorkoutExercises((exercises) =>
+      exercises.map((exercise) =>
+        exercise.id === exerciseId
+          ? {
+              ...exercise,
+              sets: exercise.sets.map((set) =>
+                set.id === setId ? { ...set, [field]: value } : set
+              ),
+            }
+          : exercise
       )
     );
   };
@@ -236,6 +257,25 @@ const ActiveWorkout = () => {
                           </Text>
 
                           {/* /reps/ */}
+
+                          <View className="flex-1 mx-2">
+                            <Text className="text-xs text-gray-500 mb-1">
+                              Reps
+                            </Text>
+                            <TextInput
+                              value={set.reps}
+                              onChangeText={(value) =>
+                                updateSet(exercise.id, set.id, "reps", value)
+                              }
+                              placeholder="0"
+                              keyboardType="numeric"
+                              className={`border rounded-lg px-3 py-2 text-center ${
+                                set.isCompleted
+                                  ? "bg-gray-100 border-gray-300 text-gray-50"
+                                  : "bg-white border-gray-300"
+                              }`}
+                            />
+                          </View>
                         </View>
                       </View>
                     ))
