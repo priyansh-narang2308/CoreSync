@@ -12,9 +12,10 @@ import { useUser } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 import { GetWorkoutsQueryResult } from "@/lib/sanity/types";
 import { client } from "@/lib/sanity/client";
-import { getWorkoutsQuery } from "./profile";
+
 import { Ionicons } from "@expo/vector-icons";
 import { formatDuration } from "lib/utils";
+import { getWorkoutsQuery } from "./history";
 
 const Index = () => {
   const { user } = useUser();

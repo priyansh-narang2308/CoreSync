@@ -16,28 +16,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
-export const getWorkoutsQuery =
-  defineQuery(`*[_type == "workout" && userId == $userId] | order(date desc) {
-    _id,
-    date,
-    duration,
-    exercises[] {
-      exercise-> {
-        _id,
-        name
-      },
-      sets[] {
-        reps,
-        weight,
-        weightUnit,
-        _type,
-        _key,
-      },
-      _type,
-      _key,
-    }
-  }`);
+import { getWorkoutsQuery } from "../history";
 
 export default function ProfilePage() {
   const { signOut } = useAuth();
