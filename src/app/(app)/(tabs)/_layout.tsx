@@ -3,9 +3,14 @@ import { Tabs } from "expo-router";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useUser } from "@clerk/clerk-expo";
 import { Image } from "react-native";
+import { useWorkoutStore } from "@/store/workout-store";
+import { Ionicons } from "@expo/vector-icons";
 
 const Layout = () => {
   const { user } = useUser();
+  const { workoutExercises } = useWorkoutStore();
+
+  const hasActiveWorkout = workoutExercises.length > 0;
 
   return (
     <Tabs>
@@ -39,6 +44,7 @@ const Layout = () => {
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="pluscircle" color={color} size={size} />
           ),
+          href: hasActiveWorkout ? null : undefined,
         }}
       />
 
@@ -47,10 +53,10 @@ const Layout = () => {
         options={{
           headerShown: false,
           title: "Active Workout",
-          href: null,
-          tabBarStyle: {
-            display: "none",
-          },
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="play-circle" color={color} size={size} />
+          ),
+          href: hasActiveWorkout ? undefined : null,
         }}
       />
 

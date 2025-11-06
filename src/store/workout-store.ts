@@ -6,7 +6,7 @@ export interface WorkoutSet {
   id: string;
   reps: string;
   weight: string;
-  weightUnit: "kg" | "lbs";
+  weightUnit: "kgs" | "lbs";
   isCompleted: boolean;
 }
 
@@ -20,7 +20,7 @@ interface WorkoutExercise {
 interface WorkoutStore {
   // state variables
   workoutExercises: WorkoutExercise[];
-  weightUnit: "kg" | "lbs";
+  weightUnit: "kgs" | "lbs";
 
   // Actionss
   addExerciseToWorkout: (exercise: { name: string; sanityId: string }) => void;
@@ -29,7 +29,7 @@ interface WorkoutStore {
       | WorkoutExercise[]
       | ((prev: WorkoutExercise[]) => WorkoutExercise[])
   ) => void;
-  setWeightUnit: (unit: "kg" | "lbs") => void;
+  setWeightUnit: (unit: "kgs" | "lbs") => void;
   resetWorkout: () => void;
 }
 

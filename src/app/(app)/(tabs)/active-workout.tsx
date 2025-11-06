@@ -20,6 +20,7 @@ import ExericseSelectionModal from "@/app/components/exercise-selection-modal";
 import { client } from "@/lib/sanity/client";
 import { defineQuery } from "groq";
 import { useUser } from "@clerk/clerk-expo";
+import { WorkoutData } from "@/app/api/save-workout+api";
 
 //query to find exercise by name
 const findExericseQuery =
@@ -229,7 +230,7 @@ const ActiveWorkout = () => {
         return false;
       }
 
-      const workoutData = {
+      const workoutData: WorkoutData = {
         _type: "workout",
         userId: user.id,
         date: new Date().toISOString(),
@@ -237,7 +238,7 @@ const ActiveWorkout = () => {
         exercises: validExercises,
       };
 
-      // Save to Sanity via API calling
+      // Save to Sanity via API calling in the api fodler
       const result = await fetch("/api/save-workout", {
         method: "POST",
         body: JSON.stringify({ workoutData }),
@@ -313,14 +314,14 @@ const ActiveWorkout = () => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                  onPress={() => setWeightUnit("kg")}
+                  onPress={() => setWeightUnit("kgs")}
                   className={`px-4 py-2 rounded ${
-                    weightUnit === "kg" ? "bg-indigo-600" : "bg-transparent"
+                    weightUnit === "kgs" ? "bg-indigo-600" : "bg-transparent"
                   }`}
                 >
                   <Text
                     className={`text-sm font-medium ${
-                      weightUnit === "kg" ? "text-white" : "text-gray-300"
+                      weightUnit === "kgs" ? "text-white" : "text-gray-300"
                     }`}
                   >
                     kg

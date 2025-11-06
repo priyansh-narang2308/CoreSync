@@ -54,8 +54,8 @@ export default defineType({
                             of: [
                                 {
                                     type: 'object',
-                                    name: 'exerciseSet',
-                                    title: 'Exercise Set',
+                                    name: 'set',
+                                    title: 'Set',
                                     fields: [
                                         defineField({
                                             name: 'reps',
