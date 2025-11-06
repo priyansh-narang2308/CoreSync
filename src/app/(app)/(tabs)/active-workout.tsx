@@ -17,6 +17,16 @@ import { useFocusEffect, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import ExericseSelectionModal from "@/app/components/exercise-selection-modal";
+import { client } from "@/lib/sanity/client";
+import { defineQuery } from "groq";
+import { useUser } from "@clerk/clerk-expo";
+
+//query to find exercise by name
+const findExericseQuery =
+  defineQuery(`*[_type == "exercise" && name == $name][0] {
+    _id,
+    name
+  }`);
 
 const ActiveWorkout = () => {
   const {
@@ -27,11 +37,12 @@ const ActiveWorkout = () => {
     setWeightUnit,
   } = useWorkoutStore();
 
+  const { user } = useUser();
   const [showExerciseSelection, setShowExerciseSelection] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const router = useRouter();
 
-  const { seconds, minutes, reset } = useStopwatch({
+  const { seconds, minutes, reset, totalSeconds } = useStopwatch({
     autoStart: true,
   });
 
@@ -158,6 +169,7 @@ const ActiveWorkout = () => {
     }
   };
 
+  // OPTIMIZE
   const saveWorkoutToDB = async () => {
     if (isSaving) {
       return false;
@@ -166,6 +178,73 @@ const ActiveWorkout = () => {
     setIsSaving(true);
 
     try {
+      // to do the saving..
+      const durationInSeconds = totalSeconds;
+
+      // exerxise data -> sanity to match it
+      const exercisesForSanityt = await Promise.all(
+        workoutExercises.map(async (exericse) => {
+          // find the exericse doc in santy by its name
+          const exerciseDoc = await client.fetch(findExericseQuery, {
+            name: exericse.name,
+          });
+
+          if (!exerciseDoc) {
+            throw new Error(`Exercise ${exericse.name} not found in database!`);
+          }
+
+          // Transform sets to match schema (only completed sets, convert to numbers)
+          const setsForSanity = exericse.sets
+            .filter((set) => set.isCompleted && set.reps && set.weight)
+            .map((set) => ({
+              _type: "set",
+              _key: Math.random().toString(36).substr(2, 9),
+              reps: parseInt(set.reps, 10) || 0,
+              weight: parseFloat(set.weight) || 0,
+              weightUnit: set.weightUnit,
+            }));
+
+          return {
+            _type: "workoutExercise",
+            _key: Math.random().toString(36).substr(2, 9),
+            exercise: {
+              _type: "reference",
+              _ref: exerciseDoc._id,
+            },
+            sets: setsForSanity,
+          };
+        })
+      );
+
+      // filter the exercises
+      const validExercises = exercisesForSanityt.filter(
+        (exercise) => exercise.sets.length > 0
+      );
+
+      if (validExercises.length === 0) {
+        Alert.alert(
+          "No Completed Sets",
+          "Please complete all the sets before saving the workout"
+        );
+        return false;
+      }
+
+      const workoutData = {
+        _type: "workout",
+        userId: user.id,
+        date: new Date().toISOString(),
+        duration: durationInSeconds,
+        exercises: validExercises,
+      };
+
+      // Save to Sanity via API calling
+      const result = await fetch("/api/save-workout", {
+        method: "POST",
+        body: JSON.stringify({ workoutData }),
+      });
+
+      console.log("Workout saved successfully:", result);
+      return true;
     } catch (error) {
       console.error("Error saving workout: ", error);
       Alert.alert("Save Failed", "Failed to save workout. Please try again.");
@@ -205,7 +284,7 @@ const ActiveWorkout = () => {
           paddingTop: Platform.OS === "ios" ? 55 : StatusBar.currentHeight || 0,
         }}
       >
-        <View className="px-6 py-4">
+        <View className="px-5 py-4">
           <View className="flex-row items-center justify-between">
             <View>
               <Text className="text-white text-xl font-semibold">
@@ -253,7 +332,7 @@ const ActiveWorkout = () => {
                 onPress={cancelWorkout}
                 className="bg-red-600 px-5 py-3 rounded-lg"
               >
-                <Text className="text-white font-medium">Cancel Workout</Text>
+                <Text className="text-white font-medium">End Workout</Text>
               </TouchableOpacity>
             </View>
           </View>
