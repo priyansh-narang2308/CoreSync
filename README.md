@@ -8,7 +8,7 @@ A modern, cross-platform fitness tracking application built with React Native an
 - **Exercise Library**: Browse and search through a comprehensive exercise database
 - **AI-Powered Guidance**: Get detailed exercise instructions and tips using Google Gemini AI
 - **Workout History**: View past workouts with detailed statistics and analytics
-- **User Authentication**: Secure authentication powered by Clerk
+- **User Authentication**: Secure authentpication powered by Clerk
 - **Cross-Platform**: Works on iOS, Android, and Web
 - **Modern UI**: Beautiful, responsive interface built with Tailwind CSS and NativeWind
 - **State Management**: Efficient state management with Zustand

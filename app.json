@@ -1,8 +1,17 @@
 {
   "expo": {
-    "scheme": "acme",
-    "userInterfaceStyle": "automatic",
+    "name": "CoreSync",
+    "slug": "coresync",
+    "version": "1.0.0",
     "orientation": "default",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "scheme": "acme",
     "web": {
       "output": "server"
     },
@@ -14,8 +23,27 @@
         }
       ]
     ],
-    "name": "coresync",
-    "slug": "coresync"
+    "android": {
+      "package": "com.coresync.app",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "permissions": []
+    },
+    "ios": {
+      "bundleIdentifier": "com.coresync.app",
+      "buildNumber": "1"
+    },
+    "extra": {
+      "router": {
+        "origin": "https://n"
+      },
+      "eas": {
+        "projectId": "11df5954-028a-41fd-a31b-6abe62a6501a"
+      }
+    },
+    "owner": "priyansh230888"
   }
 }
-

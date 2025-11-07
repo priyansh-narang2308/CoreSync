@@ -1,0 +1,43 @@
+{
+  "cli": {
+    "version": ">= 5.9.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_SANITY_PROJECT_ID": "xsygryd2",
+        "EXPO_PUBLIC_SANITY_DATASET": "production",
+        "EXPO_PUBLIC_SANITY_API_VERSION": "2024-01-01",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_YWJvdmUtcm9iaW4tNTEuY2xlcmsuYWNjb3VudHMuZGV2JA"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_SANITY_PROJECT_ID": "xsygryd2",
+        "EXPO_PUBLIC_SANITY_DATASET": "production",
+        "EXPO_PUBLIC_SANITY_API_VERSION": "2024-01-01",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_YWJvdmUtcm9iaW4tNTEuY2xlcmsuYWNjb3VudHMuZGV2JA"
+      }
+    },
+    "production": {
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_SANITY_PROJECT_ID": "xsygryd2",
+        "EXPO_PUBLIC_SANITY_DATASET": "production",
+        "EXPO_PUBLIC_SANITY_API_VERSION": "2024-01-01",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_YWJvdmUtcm9iaW4tNTEuY2xlcmsuYWNjb3VudHMuZGV2JA"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
