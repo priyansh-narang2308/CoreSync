@@ -1,8 +1,8 @@
+import 'react-native-reanimated';
 import "../global.css";
 import { Slot } from "expo-router";
 import { tokenCache } from "@clerk/clerk-expo/token-cache";
 import { ClerkProvider } from "@clerk/clerk-expo";
-import 'react-native-reanimated';
 
 
 export default function Layout() {

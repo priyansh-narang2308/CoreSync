@@ -6,9 +6,6 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "npm": {
-        "ci": false
-      },
       "env": {
         "EXPO_PUBLIC_SANITY_PROJECT_ID": "xsygryd2",
         "EXPO_PUBLIC_SANITY_DATASET": "production",
@@ -16,15 +13,11 @@
         "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_YWJvdmUtcm9iaW4tNTEuY2xlcmsuYWNjb3VudHMuZGV2JA"
       }
     },
-
     "preview": {
       "distribution": "internal",
       "android": {
         "buildType": "apk"
       },
-      "npm": {
-        "ci": false
-      },
       "env": {
         "EXPO_PUBLIC_SANITY_PROJECT_ID": "xsygryd2",
         "EXPO_PUBLIC_SANITY_DATASET": "production",
@@ -32,13 +25,9 @@
         "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_YWJvdmUtcm9iaW4tNTEuY2xlcmsuYWNjb3VudHMuZGV2JA"
       }
     },
-
     "production": {
       "android": {
         "buildType": "apk"
-      },
-      "npm": {
-        "ci": false
       },
       "env": {
         "EXPO_PUBLIC_SANITY_PROJECT_ID": "xsygryd2",
