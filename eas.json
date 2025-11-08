@@ -12,11 +12,8 @@
         "EXPO_PUBLIC_SANITY_API_VERSION": "2024-01-01",
         "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_YWJvdmUtcm9iaW4tNTEuY2xlcmsuYWNjb3VudHMuZGV2JA"
       },
-      "node": {
-        "npm": {
-          "version": "9.6.7",
-          "installCommand": "npm install --legacy-peer-deps"
-        }
+      "hooks": {
+        "pre-install": "npm install --legacy-peer-deps"
       }
     },
 
@@ -31,11 +28,8 @@
         "EXPO_PUBLIC_SANITY_API_VERSION": "2024-01-01",
         "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_YWJvdmUtcm9iaW4tNTEuY2xlcmsuYWNjb3VudHMuZGV2JA"
       },
-      "node": {
-        "npm": {
-          "version": "9.6.7",
-          "installCommand": "npm install --legacy-peer-deps"
-        }
+      "hooks": {
+        "pre-install": "npm install --legacy-peer-deps"
       }
     },
 
@@ -49,11 +43,8 @@
         "EXPO_PUBLIC_SANITY_API_VERSION": "2024-01-01",
         "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_YWJvdmUtcm9iaW4tNTEuY2xlcmsuYWNjb3VudHMuZGV2JA"
       },
-      "node": {
-        "npm": {
-          "version": "9.6.7",
-          "installCommand": "npm install --legacy-peer-deps"
-        }
+      "hooks": {
+        "pre-install": "npm install --legacy-peer-deps"
       }
     }
   },
