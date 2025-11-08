@@ -1,16 +1,19 @@
 {
   "name": "coresync",
   "version": "1.0.0",
+  "private": true,
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "deploy": "npx expo export -p web && npx eas-cli@latest deploy"
+    "deploy": "npx expo export -p web && npx eas-cli@latest deploy",
+    "doctor": "npx expo-doctor",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@clerk/clerk-expo": "^2.17.1",
+    "@clerk/clerk-expo": "^2.18.3",
     "@expo/vector-icons": "^14.1.0",
     "@google/genai": "^1.27.0",
     "@react-native-async-storage/async-storage": "2.1.2",
@@ -51,6 +54,5 @@
     "@types/react": "~19.0.10",
     "@types/react-native-vector-icons": "^6.4.18",
     "typescript": "~5.8.3"
-  },
-  "private": true
+  }
 }
