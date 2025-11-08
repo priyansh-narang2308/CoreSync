@@ -4,13 +4,7 @@
     "slug": "coresync",
     "version": "1.0.0",
     "orientation": "default",
-    "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "scheme": "acme",
     "web": {
       "output": "server"
@@ -21,15 +15,14 @@
         {
           "origin": "https://n"
         }
-      ]
+      ],
+      "expo-web-browser",
+      "expo-font",
+      "expo-secure-store"
     ],
     "android": {
       "package": "com.coresync.app",
       "versionCode": 1,
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#ffffff"
-      },
       "permissions": []
     },
     "ios": {
