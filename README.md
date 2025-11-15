@@ -16,22 +16,22 @@ A modern, cross-platform fitness tracking application built with React Native an
 
 ## Images of The App
 
-<div style="display: flex; gap: 20px; margin-bottom: 20px;">
+<div style="display: flex; gap: 25px; margin-bottom: 20px;">
   <img src="https://github.com/priyansh-narang2308/CoreSync/blob/main/app-images/Login.png" width="45%" />
   <img src="https://github.com/priyansh-narang2308/CoreSync/blob/main/app-images/SignUp.png" width="45%" />
 </div>
 
-<div style="display: flex; gap: 20px; margin-bottom: 20px;">
+<div style="display: flex; gap: 25px; margin-bottom: 20px;">
   <img src="https://github.com/priyansh-narang2308/CoreSync/blob/main/app-images/Dashboard.png" width="45%" />
   <img src="https://github.com/priyansh-narang2308/CoreSync/blob/main/app-images/ExerciseLibrary.png" width="45%" />
 </div>
 
-<div style="display: flex; gap: 20px; margin-bottom: 20px;">
+<div style="display: flex; gap: 25px; margin-bottom: 20px;">
   <img src="https://github.com/priyansh-narang2308/CoreSync/blob/main/app-images/History.png" width="45%" />
   <img src="https://github.com/priyansh-narang2308/CoreSync/blob/main/app-images/Workout.png" width="45%" />
 </div>
 
-<div style="display: flex; gap: 20px;">
+<div style="display: flex; gap: 25px;">
   <img src="https://github.com/priyansh-narang2308/CoreSync/blob/main/app-images/Profile.png" width="45%" />
 </div>
 
