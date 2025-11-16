@@ -223,22 +223,5 @@ Uses GROQ (Graph-Relational Object Queries) for fetching data from Sanity:
 API routes follow the Next.js convention:
 - Create files with `+api.ts` extension in the `app/api/` directory
 - Export HTTP method functions (GET, POST, PUT, DELETE)
-- Use `Request` and `Response` objects
-
-
-## 🔐 Security Notes
-
-- Never commit `.env` files to version control
-- Keep API keys secure and rotate them regularly
-- Use Sanity's token-based authentication for mutations
-- Clerk handles all authentication security
-
-## 📄 License
-
-This project is private and proprietary.
-
-## 🤝 Contributing
-
-This is a private project. For questions or issues, please contact the project maintainer.
 
 
