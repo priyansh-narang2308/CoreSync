@@ -9,11 +9,7 @@ export default function Layout() {
   const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
   if (!publishableKey) {
-    return (
-      <ClerkProvider tokenCache={tokenCache}>
-        <Slot />
-      </ClerkProvider>
-    );
+    return null; // Or a simple loading view
   }
 
   return (
