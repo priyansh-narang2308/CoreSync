@@ -2,7 +2,7 @@
 
 A modern, cross-platform fitness tracking application built with React Native and Expo. CoreSync helps users track workouts, manage exercises, and get AI-powered guidance for their fitness journey.
 
-## 🚀 Features
+## Features
 
 - **Workout Tracking**: Track active workouts with real-time timer, sets, reps, and weights
 - **Exercise Library**: Browse and search through a comprehensive exercise database
@@ -36,7 +36,7 @@ A modern, cross-platform fitness tracking application built with React Native an
 </div>
 
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Core Framework
 - **[Expo](https://expo.dev/)** (v53.0.4) - React Native framework for cross-platform development
@@ -70,7 +70,7 @@ A modern, cross-platform fitness tracking application built with React Native an
 - **[Groq](https://groq.com/)** - AI inference platform
 
 
-## 🚦 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -101,7 +101,6 @@ A modern, cross-platform fitness tracking application built with React Native an
    ```env
    # Clerk Authentication
    EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
-   CLERK_SECRET_KEY=your_clerk_secret_key
 
    # Sanity CMS
    EXPO_PUBLIC_SANITY_PROJECT_ID=your_sanity_project_id
@@ -133,7 +132,7 @@ A modern, cross-platform fitness tracking application built with React Native an
    - Android: `npm run android` or press `a` in the Expo CLI
    - Web: `npm run web` or press `w` in the Expo CLI
 
-## 🔧 Configuration
+## Configuration
 
 ### Expo Configuration
 
@@ -171,7 +170,7 @@ CoreSync uses Expo Router's API routes (similar to Next.js):
 - **`/api/delete-workout`** (DELETE): Delete a workout
   - Request body: `{ workoutId: string }`
 
-## 🎯 Key Features Explained
+## Key Features Explained
 
 ### Protected Routes
 
@@ -201,7 +200,7 @@ Uses GROQ (Graph-Relational Object Queries) for fetching data from Sanity:
 - Filtered and sorted results
 
 
-## 📱 Available Scripts
+## Available Scripts
 
 - `npm start` - Start the Expo development server
 - `npm run ios` - Run on iOS simulator
@@ -209,7 +208,7 @@ Uses GROQ (Graph-Relational Object Queries) for fetching data from Sanity:
 - `npm run web` - Run on web browser
 - `npm run deploy` - Build and deploy the app
 
-## 🏗️ Development
+## Development
 
 ### Adding New Exercises
 

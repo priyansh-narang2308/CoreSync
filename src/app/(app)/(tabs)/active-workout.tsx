@@ -94,11 +94,11 @@ const ActiveWorkout = () => {
       exercises.map((exercise) =>
         exercise.id === exerciseId
           ? {
-              ...exercise,
-              sets: exercise.sets.map((set) =>
-                set.id === setId ? { ...set, [field]: value } : set
-              ),
-            }
+            ...exercise,
+            sets: exercise.sets.map((set) =>
+              set.id === setId ? { ...set, [field]: value } : set
+            ),
+          }
           : exercise
       )
     );
@@ -109,9 +109,9 @@ const ActiveWorkout = () => {
       exercises.map((exercise) =>
         exercise.id === exerciseId
           ? {
-              ...exercise,
-              sets: exercise.sets.filter((set) => set.id !== setId),
-            }
+            ...exercise,
+            sets: exercise.sets.filter((set) => set.id !== setId),
+          }
           : exercise
       )
     );
@@ -123,13 +123,13 @@ const ActiveWorkout = () => {
       exercises.map((exercise) =>
         exercise.id === exerciseId
           ? {
-              ...exercise,
-              sets: exercise.sets.map((set) =>
-                set.id === setId
-                  ? { ...set, isCompleted: !set.isCompleted }
-                  : set
-              ),
-            }
+            ...exercise,
+            sets: exercise.sets.map((set) =>
+              set.id === setId
+                ? { ...set, isCompleted: !set.isCompleted }
+                : set
+            ),
+          }
           : exercise
       )
     );
@@ -300,14 +300,12 @@ const ActiveWorkout = () => {
               <View className="flex-row bg-gray-700 rounded-lg p-1">
                 <TouchableOpacity
                   onPress={() => setWeightUnit("lbs")}
-                  className={`px-4 py-2 rounded ${
-                    weightUnit === "lbs" ? "bg-indigo-600" : "bg-transparent"
-                  }`}
+                  className={`px-4 py-2 rounded ${weightUnit === "lbs" ? "bg-indigo-600" : "bg-transparent"
+                    }`}
                 >
                   <Text
-                    className={`text-sm font-medium ${
-                      weightUnit === "lbs" ? "text-white" : "text-gray-300"
-                    }`}
+                    className={`text-sm font-medium ${weightUnit === "lbs" ? "text-white" : "text-gray-300"
+                      }`}
                   >
                     lbs
                   </Text>
@@ -315,14 +313,12 @@ const ActiveWorkout = () => {
 
                 <TouchableOpacity
                   onPress={() => setWeightUnit("kgs")}
-                  className={`px-4 py-2 rounded ${
-                    weightUnit === "kgs" ? "bg-indigo-600" : "bg-transparent"
-                  }`}
+                  className={`px-4 py-2 rounded ${weightUnit === "kgs" ? "bg-indigo-600" : "bg-transparent"
+                    }`}
                 >
                   <Text
-                    className={`text-sm font-medium ${
-                      weightUnit === "kgs" ? "text-white" : "text-gray-300"
-                    }`}
+                    className={`text-sm font-medium ${weightUnit === "kgs" ? "text-white" : "text-gray-300"
+                      }`}
                   >
                     kg
                   </Text>
@@ -412,11 +408,10 @@ const ActiveWorkout = () => {
                     exercise.sets.map((set, setIndex) => (
                       <View
                         key={set.id}
-                        className={`py-3 px-3 mb-2 rounded-lg border ${
-                          set.isCompleted
+                        className={`py-3 px-3 mb-2 rounded-lg border ${set.isCompleted
                             ? "bg-green-100 border-green-300"
                             : "bg-gray-50 border-gray-200"
-                        }`}
+                          }`}
                       >
                         {/* sets,reps,delete and weight, complete it  */}
                         <View className="flex-row items-center justify-between">
@@ -436,11 +431,10 @@ const ActiveWorkout = () => {
                               }
                               placeholder="0"
                               keyboardType="numeric"
-                              className={`border rounded-lg px-3 py-2 text-center ${
-                                set.isCompleted
+                              className={`border rounded-lg px-3 py-2 text-center ${set.isCompleted
                                   ? "bg-gray-100 border-gray-300 text-gray-500"
                                   : "bg-white border-gray-300"
-                              }`}
+                                }`}
                               editable={!set.isCompleted}
                             />
                           </View>
@@ -457,11 +451,10 @@ const ActiveWorkout = () => {
                               }
                               placeholder="0"
                               keyboardType="numeric"
-                              className={`border rounded-lg px-3 py-2 text-center ${
-                                set.isCompleted
+                              className={`border rounded-lg px-3 py-2 text-center ${set.isCompleted
                                   ? "bg-gray-100 border-gray-300 text-gray-500"
                                   : "bg-white border-gray-300"
-                              }`}
+                                }`}
                               editable={!set.isCompleted}
                             />
                           </View>
@@ -470,9 +463,8 @@ const ActiveWorkout = () => {
                             onPress={() =>
                               toggleSetCompletion(exercise.id, set.id)
                             }
-                            className={`w-12 h-12 rounded-xl items-center justify-center mx-1 ${
-                              set.isCompleted ? "bg-green-500" : "bg-gray-200"
-                            }`}
+                            className={`w-12 h-12 rounded-xl items-center justify-center mx-1 ${set.isCompleted ? "bg-green-500" : "bg-gray-200"
+                              }`}
                           >
                             <Ionicons
                               name={
@@ -542,13 +534,13 @@ const ActiveWorkout = () => {
               className={`rounded-2xl py-4 items-center mb-8 ${
                 // Everything shoyld be completed before saving
                 isSaving ||
-                workoutExercises.length === 0 ||
-                workoutExercises.some((exercise) =>
-                  exercise.sets.some((set) => !set.isCompleted)
-                )
+                  workoutExercises.length === 0 ||
+                  workoutExercises.some((exercise) =>
+                    exercise.sets.some((set) => !set.isCompleted)
+                  )
                   ? "bg-gray-400"
                   : "bg-green-600 active:bg-gray-700"
-              }`}
+                }`}
               disabled={
                 isSaving ||
                 workoutExercises.length === 0 ||
