@@ -185,10 +185,15 @@ const WorkoutRecord = () => {
     setDeleting(true);
 
     try {
-      await fetch("/api/delete-workout", {
+      const resp = await fetch("/api/delete-workout", {
         method: "POST",
         body: JSON.stringify({ workoutId }),
       });
+
+      if (!resp.ok) {
+        const errorData = await resp.json();
+        throw new Error(errorData.error || "Failed to delete workout");
+      }
 
       router.replace("/(app)/(tabs)/history?refresh=true");
     } catch (error) {

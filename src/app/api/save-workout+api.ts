@@ -1,28 +1,7 @@
 // all fetchec from the sanity data same to samt
 
 import { adminClient } from "@/lib/sanity/client";
-
-export interface WorkoutData {
-  _type: string;
-  userId: string;
-  date: string;
-  duration: number;
-  exercises: {
-    _type: string;
-    _key: string;
-    exercise: {
-      _type: string;
-      _ref: string;
-    };
-    sets: {
-      _type: string;
-      _key: string;
-      reps: number;
-      weight: number;
-      weightUnit: "lbs" | "kgs";
-    }[];
-  }[];
-}
+import { WorkoutData } from "../../types/workout";
 
 export async function POST(request: Request) {
   const { workoutData }: { workoutData: WorkoutData } = await request.json();

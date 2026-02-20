@@ -15,7 +15,6 @@ import {
   Linking,
   ActivityIndicator,
 } from "react-native";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Markdown from "react-native-markdown-display";
 
 // Fetch for only that particular ID

@@ -20,7 +20,7 @@ import ExericseSelectionModal from "@/app/components/exercise-selection-modal";
 import { client } from "@/lib/sanity/client";
 import { defineQuery } from "groq";
 import { useUser } from "@clerk/clerk-expo";
-import { WorkoutData } from "@/app/api/save-workout+api";
+import { WorkoutData } from "@/types/workout";
 
 //query to find exercise by name
 const findExericseQuery =
@@ -244,7 +244,11 @@ const ActiveWorkout = () => {
         body: JSON.stringify({ workoutData }),
       });
 
-      console.log("Workout saved successfully:", result);
+      if (!result.ok) {
+        const errorData = await result.json();
+        throw new Error(errorData.error || "Failed to save workout");
+      }
+
       return true;
     } catch (error) {
       console.error("Error saving workout: ", error);
@@ -409,8 +413,8 @@ const ActiveWorkout = () => {
                       <View
                         key={set.id}
                         className={`py-3 px-3 mb-2 rounded-lg border ${set.isCompleted
-                            ? "bg-green-100 border-green-300"
-                            : "bg-gray-50 border-gray-200"
+                          ? "bg-green-100 border-green-300"
+                          : "bg-gray-50 border-gray-200"
                           }`}
                       >
                         {/* sets,reps,delete and weight, complete it  */}
@@ -432,8 +436,8 @@ const ActiveWorkout = () => {
                               placeholder="0"
                               keyboardType="numeric"
                               className={`border rounded-lg px-3 py-2 text-center ${set.isCompleted
-                                  ? "bg-gray-100 border-gray-300 text-gray-500"
-                                  : "bg-white border-gray-300"
+                                ? "bg-gray-100 border-gray-300 text-gray-500"
+                                : "bg-white border-gray-300"
                                 }`}
                               editable={!set.isCompleted}
                             />
@@ -452,8 +456,8 @@ const ActiveWorkout = () => {
                               placeholder="0"
                               keyboardType="numeric"
                               className={`border rounded-lg px-3 py-2 text-center ${set.isCompleted
-                                  ? "bg-gray-100 border-gray-300 text-gray-500"
-                                  : "bg-white border-gray-300"
+                                ? "bg-gray-100 border-gray-300 text-gray-500"
+                                : "bg-white border-gray-300"
                                 }`}
                               editable={!set.isCompleted}
                             />

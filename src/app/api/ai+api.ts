@@ -30,7 +30,7 @@ export async function POST(request: Request) {
       apiKey: process.env.GEMINI_API_KEY,
     });
 
-    const model = "gemini-2.0-flash";
+    const model = "gemini-flash-latest";
 
     const result = await genAI.models.generateContent({
       model,
