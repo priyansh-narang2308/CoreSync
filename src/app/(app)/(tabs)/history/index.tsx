@@ -41,7 +41,7 @@ export const getWorkoutsQuery = defineQuery(`
 `);
 
 export default function Page() {
-  const { user } = useUser();
+  const { user, isLoaded: isAuthLoaded } = useUser();
   const [workouts, setWorkouts] = useState<GetWorkoutsQueryResult>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -49,7 +49,10 @@ export default function Page() {
   const router = useRouter();
 
   const fetchWorksouts = async () => {
+    if (!isAuthLoaded) return;
+
     if (!user?.id) {
+      setLoading(false);
       return;
     }
 
@@ -66,7 +69,7 @@ export default function Page() {
 
   useEffect(() => {
     fetchWorksouts();
-  }, [user?.id]);
+  }, [user?.id, isAuthLoaded]);
 
   useEffect(() => {
     if (refresh === "true") {

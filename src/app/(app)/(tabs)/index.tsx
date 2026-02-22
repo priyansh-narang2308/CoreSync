@@ -18,14 +18,20 @@ import { formatDuration } from "lib/utils";
 import { getWorkoutsQuery } from "./history";
 
 const Index = () => {
-  const { user } = useUser();
+  const { user, isLoaded: isAuthLoaded } = useUser();
   const router = useRouter();
   const [workouts, setWorkouts] = useState<GetWorkoutsQueryResult>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
 
   const fetchWorkouts = async () => {
-    if (!user?.id) return;
+    if (!isAuthLoaded) return;
+
+    if (!user?.id) {
+      setLoading(false);
+      return;
+    }
+
     try {
       const resultss = await client.fetch(getWorkoutsQuery, {
         userId: user.id,
@@ -41,7 +47,7 @@ const Index = () => {
 
   useEffect(() => {
     fetchWorkouts();
-  }, [user?.id]);
+  }, [user?.id, isAuthLoaded]);
 
   const onRefresh = () => {
     setRefreshing(true);

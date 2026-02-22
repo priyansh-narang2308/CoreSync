@@ -26,29 +26,24 @@ export async function POST(request: Request) {
   Keep spacing between sections and avoid extra commentary.`;
 
   try {
+    // Correct pattern for @google/genai (official SDK)
     const genAI = new GoogleGenAI({
       apiKey: process.env.GEMINI_API_KEY,
     });
 
-    const model = "gemini-flash-latest";
-
+    // gemini-1.5-flash is very stable and widely available
     const result = await genAI.models.generateContent({
-      model,
-      contents: [
-        {
-          role: "user",
-          parts: [{ text: prompt }],
-        },
-      ],
+      model: "gemini-1.5-flash",
+      contents: [{ role: 'user', parts: [{ text: prompt }] }],
     });
 
     const message =
       result.candidates &&
-      result.candidates[0] &&
-      result.candidates[0].content &&
-      result.candidates[0].content.parts &&
-      result.candidates[0].content.parts[0] &&
-      result.candidates[0].content.parts[0].text
+        result.candidates[0] &&
+        result.candidates[0].content &&
+        result.candidates[0].content.parts &&
+        result.candidates[0].content.parts[0] &&
+        result.candidates[0].content.parts[0].text
         ? result.candidates[0].content.parts[0].text
         : "No response from AI model.";
 

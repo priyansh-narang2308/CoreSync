@@ -20,14 +20,20 @@ import { getWorkoutsQuery } from "../history";
 
 export default function ProfilePage() {
   const { signOut } = useAuth();
-  const { user } = useUser();
+  const { user, isLoaded: isAuthLoaded } = useUser();
 
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [workouts, setWorkouts] = useState<GetWorkoutsQueryResult>([]);
 
   const fetchWorkouts = async () => {
-    if (!user?.id) return;
+    if (!isAuthLoaded) return;
+
+    if (!user?.id) {
+      setLoading(false);
+      return;
+    }
+
     try {
       const resultss = await client.fetch(getWorkoutsQuery, {
         userId: user.id,
@@ -42,7 +48,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     fetchWorkouts();
-  }, [user?.id]);
+  }, [user?.id, isAuthLoaded]);
 
   const totalWorkouts = workouts.length;
   const totalDuration = workouts.reduce(
@@ -63,7 +69,19 @@ export default function ProfilePage() {
   const handleSignOut = () => {
     Alert.alert("Sign Out", "Are you sure you want to sign out?", [
       { text: "Cancel", style: "cancel" },
-      { text: "Sign Out", style: "destructive", onPress: () => signOut() },
+      {
+        text: "Sign Out",
+        style: "destructive",
+        onPress: async () => {
+          try {
+            await signOut();
+            router.replace("/sign-in");
+          } catch (e) {
+            console.error("Logout error:", e);
+            Alert.alert("Error", "Failed to sign out. Please try again.");
+          }
+        }
+      },
     ]);
   };
 
@@ -106,7 +124,7 @@ export default function ProfilePage() {
             <View className="flex-row items-center">
               <Image
                 source={{
-                  uri: user.externalAccounts?.[0]?.imageUrl ?? user.imageUrl,
+                  uri: user?.externalAccounts?.[0]?.imageUrl ?? user?.imageUrl,
                 }}
                 className="w-20 h-20 rounded-2xl border-4 border-indigo-100"
               />

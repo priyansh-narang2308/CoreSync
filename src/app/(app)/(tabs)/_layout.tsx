@@ -80,12 +80,12 @@ const Layout = () => {
             user?.imageUrl ? (
               <Image
                 source={{
-                  uri: user.imageUrl ?? user?.externalAccounts[0]?.imageUrl,
+                  uri: user?.imageUrl ?? user?.externalAccounts?.[0]?.imageUrl,
                 }}
                 style={{
                   width: 28,
                   height: 28,
-                  borderRadius: 50,
+                  borderRadius: 14,
                 }}
               />
             ) : (
