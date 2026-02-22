@@ -24,6 +24,7 @@ interface WorkoutStore {
 
   // Actionss
   addExerciseToWorkout: (exercise: { name: string; sanityId: string }) => void;
+  startRoutine: (exercises: { name: string; sanityId: string }[]) => void;
   setWorkoutExercises: (
     exercises:
       | WorkoutExercise[]
@@ -51,6 +52,16 @@ export const useWorkoutStore = create<WorkoutStore>()(
             workoutExercises: [...state.workoutExercises, newExercise],
           };
         }),
+
+      startRoutine: (exercises) =>
+        set(() => ({
+          workoutExercises: exercises.map((ex) => ({
+            id: Math.random().toString(),
+            sanityId: ex.sanityId,
+            name: ex.name,
+            sets: [],
+          })),
+        })),
 
       setWorkoutExercises: (exercises) =>
         set((state) => ({

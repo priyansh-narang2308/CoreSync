@@ -13,6 +13,24 @@
  */
 
 // Source: schema.json
+export type Routine = {
+  _id: string;
+  _type: "routine";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  userId?: string;
+  description?: string;
+  exercises?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "exercise";
+  }>;
+};
+
 export type Workout = {
   _id: string;
   _type: "workout";
@@ -185,7 +203,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Workout | Exercise | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Routine | Workout | Exercise | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../src/app/(app)/(tabs)/active-workout.tsx
 // Variable: findExericseQuery

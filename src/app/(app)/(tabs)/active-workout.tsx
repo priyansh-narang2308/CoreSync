@@ -21,6 +21,7 @@ import { client } from "@/lib/sanity/client";
 import { defineQuery } from "groq";
 import { useUser } from "@clerk/clerk-expo";
 import { WorkoutData } from "@/types/workout";
+import SaveRoutineModal from "@/app/components/save-routine-modal";
 
 //query to find exercise by name
 const findExericseQuery =
@@ -40,6 +41,8 @@ const ActiveWorkout = () => {
 
   const { user } = useUser();
   const [showExerciseSelection, setShowExerciseSelection] = useState(false);
+  const [showSaveRoutineModal, setShowSaveRoutineModal] = useState(false);
+  const [isSavingRoutine, setIsSavingRoutine] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const router = useRouter();
 
@@ -158,15 +161,67 @@ const ActiveWorkout = () => {
     );
   };
 
+  const saveAsRoutine = async (name: string, description: string) => {
+    if (!user?.id) return;
+
+    setIsSavingRoutine(true);
+    const routineData = {
+      _type: 'routine',
+      name: name,
+      description: description,
+      userId: user.id,
+      exercises: workoutExercises.map(ex => ({
+        _type: 'reference',
+        _ref: ex.sanityId,
+        _key: Math.random().toString(36).substr(2, 9),
+      }))
+    };
+
+    try {
+      const resp = await fetch("/api/save-routine", {
+        method: "POST",
+        body: JSON.stringify({ routineData }),
+      });
+
+      if (resp.ok) {
+        setShowSaveRoutineModal(false);
+        resetWorkout();
+        router.replace("/(app)/(tabs)/history?refresh=true");
+      } else {
+        const err = await resp.json();
+        Alert.alert("Error", err.error || "Failed to save template.");
+      }
+    } catch (error) {
+      console.error("Error saving routine:", error);
+      Alert.alert("Error", "Failed to connect to server.");
+    } finally {
+      setIsSavingRoutine(false);
+    }
+  };
+
   const endWorkout = async () => {
     const saved = await saveWorkoutToDB();
 
     if (saved) {
-      Alert.alert("Workout Saved", "Your workout has been saved successfully!");
-      // reset it to the starting
-      resetWorkout();
-
-      router.replace("/(app)/(tabs)/history?refresh=true");
+      Alert.alert(
+        "Save as Template",
+        "Your workout has been saved! Would you like to save this set of exercises as a template for next time?",
+        [
+          {
+            text: "No Thanks",
+            onPress: () => {
+              resetWorkout();
+              router.replace("/(app)/(tabs)/history?refresh=true");
+            },
+          },
+          {
+            text: "Save as Template",
+            onPress: () => {
+              setShowSaveRoutineModal(true);
+            },
+          },
+        ]
+      );
     }
   };
 
@@ -573,6 +628,17 @@ const ActiveWorkout = () => {
       <ExericseSelectionModal
         visible={showExerciseSelection}
         onClose={() => setShowExerciseSelection(false)}
+      />
+
+      <SaveRoutineModal
+        visible={showSaveRoutineModal}
+        onClose={() => {
+          setShowSaveRoutineModal(false);
+          resetWorkout();
+          router.replace("/(app)/(tabs)/history?refresh=true");
+        }}
+        onSave={saveAsRoutine}
+        isSaving={isSavingRoutine}
       />
     </SafeAreaView>
   );
